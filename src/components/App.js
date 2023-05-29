@@ -15,7 +15,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
 
-  const [selectedCard, setSelectedCard] = React.useState(null)
+  const [selectedCard, setSelectedCard] = React.useState(null);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -29,19 +29,19 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-  function handleCardClick (card) {
-    setSelectedCard(card)
+  function handleCardClick(card) {
+    setSelectedCard(card);
   }
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setSelectedCard(null)
+    setSelectedCard(null);
   }
 
   return (
-    <body>
+    <div>
       <Header />
 
       <Main
@@ -60,16 +60,16 @@ function App() {
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
       >
-        <label class="popup__input-fields">
+        <label className="popup__input-fields">
           <input
             id="image-input"
-            class="popup__text popup__text_value_link"
+            className="popup__text popup__text_value_link"
             type="url"
             name="avatar"
             placeholder="Ссылка на картинку"
             required
           />
-          <span class="image-input-error popup__input-error"></span>
+          <span className="image-input-error popup__input-error"></span>
         </label>
       </PopupWithForm>
 
@@ -80,31 +80,31 @@ function App() {
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
       >
-        <label class="popup__input-fields">
+        <label className="popup__input-fields">
           <input
             id="name-input"
-            class="popup__text popup__text_value_name"
+            className="popup__text popup__text_value_name"
             type="text"
             name="name"
             placeholder="Имя"
-            minlength="2"
-            maxlength="40"
+            minLength="2"
+            maxLength="40"
             required
           />
-          <span class="name-input-error popup__input-error"></span>
+          <span className="name-input-error popup__input-error"></span>
         </label>
-        <label class="popup__input-fields">
+        <label className="popup__input-fields">
           <input
             id="profession-input"
-            class="popup__text popup__text_value_profession"
+            className="popup__text popup__text_value_profession"
             type="text"
             name="profession"
             placeholder="Профессия"
-            minlength="2"
-            maxlength="200"
+            minLength="2"
+            maxLength="200"
             required
           />
-          <span class="profession-input-error popup__input-error"></span>
+          <span className="profession-input-error popup__input-error"></span>
         </label>
       </PopupWithForm>
 
@@ -115,43 +115,40 @@ function App() {
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
       >
-        <label class="popup__input-fields">
+        <label className="popup__input-fields">
           <input
             id="place-input"
-            class="popup__text popup__text_value_name-place"
+            className="popup__text popup__text_value_name-place"
             type="text"
             name="name"
             placeholder="Название"
-            minlength="2"
-            maxlength="30"
+            minLength="2"
+            maxLength="30"
             required
           />
-          <span class="place-input-error popup__input-error"></span>
+          <span className="place-input-error popup__input-error"></span>
         </label>
-        <label class="popup__input-fields">
+        <label className="popup__input-fields">
           <input
             id="link-input"
-            class="popup__text popup__text_value_link"
+            className="popup__text popup__text_value_link"
             type="url"
             name="link"
             placeholder="Ссылка на картинку"
             required
           />
-          <span class="link-input-error popup__input-error"></span>
+          <span className="link-input-error popup__input-error"></span>
         </label>
       </PopupWithForm>
 
-      <ImagePopup 
-      card={selectedCard}
-      onClose={closeAllPopups}
-      />
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
       <PopupWithForm
         name="confirm"
         title="Вы уверены?"
         buttonText="Да"
       ></PopupWithForm>
-    </body>
+    </div>
   );
 }
 

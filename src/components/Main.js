@@ -2,7 +2,6 @@ import React from "react";
 import api from "../utils/api";
 import Card from "./Card";
 
-
 function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
   const [userName, setUserName] = React.useState("#");
   const [userDescription, setUserDescription] = React.useState("");
@@ -19,10 +18,12 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       })
       .catch((err) => console.log(err));
 
-      api.getCardList().then((res) => {
+    api
+      .getCardList()
+      .then((res) => {
         setCards(res);
-        console.log(res);
-      });
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -55,11 +56,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       </section>
       <section className="gallery">
         {cards.map((card) => (
-          <Card 
-          card={card} 
-          key={card._id} 
-          onCardClick={onCardClick}
-          />
+          <Card card={card} key={card._id} onCardClick={onCardClick} />
         ))}
       </section>
     </main>
