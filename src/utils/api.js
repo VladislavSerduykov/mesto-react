@@ -31,7 +31,7 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  changeUserInfo({ name, profession }) {
+  changeUserInfo({ name, about }) {
     const url = `${this._baseUrl}/users/me`;
 
     return fetch(url, {
@@ -39,7 +39,7 @@ class Api {
       headers: this._headers,
       body: JSON.stringify({
         name,
-        about: profession,
+        about,
       }),
     }).then(this._checkResponse);
   }
@@ -65,9 +65,6 @@ class Api {
       headers: this._headers,
     })
       .then(this._checkResponse)
-      .then((res) => {
-        return res.likes;
-      });
   }
 
   _deleteLikes(cardId) {
@@ -78,9 +75,6 @@ class Api {
       headers: this._headers,
     })
       .then(this._checkResponse)
-      .then((res) => {
-        return res.likes;
-      });
   }
 
   toggleLikes(cardId, isLiked) {
@@ -103,14 +97,14 @@ class Api {
     });
   }
 
-  setUserImage(data) {
+  setUserImage(link) {
     const url = `${this._baseUrl}/users/me/avatar`;
 
     return fetch(url, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: `${data.avatar}`,
+        avatar: link,
       }),
     }).then(this._checkResponse);
   }
