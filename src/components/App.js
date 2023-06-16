@@ -3,13 +3,14 @@ import React from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup ";
+import ConfirmPopup from "./ConfirmPopup";
+
 
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
@@ -24,6 +25,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
 
+  const [deletedCard, setDeletedCard] = React.useState(null);
   const [selectedCard, setSelectedCard] = React.useState(null);
 
   React.useEffect(() => {
@@ -57,6 +59,9 @@ function App() {
   function handleCardClick(card) {
     setSelectedCard(card);
   }
+  function handleCardDelete(card) {
+    setDeletedCard(card);
+  }
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
@@ -71,19 +76,21 @@ function App() {
       .catch(console.error);
   }
 
-  function handleCardDelete(card) {
-    const cardId = card._id;
+  function handleConfirmCardDelete(card) {
+    const cardId = deletedCard._id;
 
     api
       .deleteCard(cardId)
       .then(() => {
         setCards((state) => state.filter((card) => card._id !== cardId));
+        closeAllPopups();
       })
       .catch(console.error);
   }
 
   function handleUpdateUser(userInfo) {
     api
+
       .changeUserInfo(userInfo)
       .then((updateUserInfo) => {
         setCurrentUser(updateUserInfo);
@@ -94,6 +101,7 @@ function App() {
 
   function handleUpdateAvatar({ avatar }) {
     api
+
       .setUserImage(avatar)
       .then((newUserInfo) => {
         setCurrentUser(newUserInfo);
@@ -104,6 +112,7 @@ function App() {
 
   function handleAddPlace(newPlace) {
     api
+
       .addNewCard(newPlace)
       .then((newCard) => {
         setCards((state) => [newCard, ...state]);
@@ -117,6 +126,7 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setSelectedCard(null);
+    setDeletedCard(null)
   }
 
   return (
@@ -156,11 +166,11 @@ function App() {
 
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
 
-        <PopupWithForm
-          name="confirm"
-          title="Вы уверены?"
-          buttonText="Да"
-        ></PopupWithForm>
+        <ConfirmPopup
+          isOpen={!!deletedCard}
+          onClose={closeAllPopups}
+          onConfirm={handleConfirmCardDelete}
+        />
       </div>
     </CurrentUserContext.Provider>
   );
