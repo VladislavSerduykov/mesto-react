@@ -1,11 +1,16 @@
 import React from "react";
 import Card from "./Card";
 import CurrentUserContext from "../contexts/CurrentUserContext";
+import Header from "./Header";
 
-function Main({cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike,onCardDelete }) {
+function Main({cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike,onCardDelete, email, onLogout }) {
   const currentUser = React.useContext(CurrentUserContext)
 
-  return (
+  return (<>
+    <Header isWrapped={true}>
+      <p className="header__nav_text">{email}</p>
+      <button href="#" className="header__nav_button" type="button" onClick={onLogout}></button>
+    </Header>
     <main>
       <section className="profile">
         <div className="profile__avatar-container">
@@ -39,6 +44,7 @@ function Main({cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCa
         ))}
       </section>
     </main>
+    </>
   );
 }
 export default Main;

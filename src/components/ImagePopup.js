@@ -1,5 +1,3 @@
-import React from "react";
-
 function ImagePopup(props) {
   return (
     <div className={`popup popup_value_image` + (props.card !== null && " popup_opened")}>
