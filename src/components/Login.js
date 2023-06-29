@@ -1,5 +1,6 @@
 import React from "react";
-import {useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Header from "./Header";
 import auth from "../utils/auth";
 
 function Login({ handleInfoMessage, onLogin }) {
@@ -44,6 +45,13 @@ function Login({ handleInfoMessage, onLogin }) {
 
   return (
     <>
+      <Header>
+        <div className="header__nav">
+          <Link style={{color: '#A9A9A9'}} className="header__nav_button" to="/sign-up">
+            Регистрация
+          </Link>
+        </div>
+      </Header>
       <main>
         <div className="register">
           <h2 className="register__title">Вход</h2>

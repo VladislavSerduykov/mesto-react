@@ -54,6 +54,6 @@
 @import url(./blocks/popup/__button/popup__button.css);
 @import url(./blocks/popup/__button/_inactive/popup__button_inactive.css);
 @import url(./blocks/popup/__close/popup__close.css);
-@import url(./blocks/popup/_info/popup__info.css);
-@import url(./blocks/popup/_info/_type/popup__info_type_fail.css);
-@import url(./blocks/popup/_info/_type/popup__info_type_success.css);
+@import url(./blocks/popup/__info-message/popup__info-message.css);
+@import url(./blocks/popup/__info-message/_type/popup__info-message_type_success.css);
+@import url(./blocks/popup/__info-message/_type/popup__info-message_type_fail.css);

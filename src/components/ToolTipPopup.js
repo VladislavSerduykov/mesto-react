@@ -6,29 +6,21 @@ function ToolTipPopup({ message, onClose }) {
   }
 
   return (
-    <div
-      className={`popup ` + (message ? "popup_opened" : "")}
-      onClick={handleOverlayClick}
-    >
+    <div className={`popup popup_value_info` + (message && " popup_opened")} onClick={handleOverlayClick}>
       <div className="popup__container">
         <p
           className={
-            "popup__info" +
+            "popup__info-message" +
             (message
               ? message.isSuccess
-                ? " popup__info_type_success"
-                : " popup__info_type_fail"
+                ? " popup__info-message_type_success"
+                : " popup__info-message_type_fail"
               : "")
           }
         >
-          {message ? message.text : ""}
+          {message ? message.text : " "}
         </p>
-        <button
-          className="popup__close"
-          type="button"
-          aria-label="Закрыть окно"
-          onClick={onClose}
-        />
+        <button className="popup__close" type="button" onClick={onClose} />
       </div>
     </div>
   );

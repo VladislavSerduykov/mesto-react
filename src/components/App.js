@@ -15,7 +15,6 @@ import Login from "./Login";
 import ToolTipPopup from "./ToolTipPopup";
 import auth from "../utils/auth";
 import ProtectedRoute from "./ProtectedRoute";
-import Header from "./Header";
 
 function App() {
   const [currentUser, setCurrentUser] = React.useState({});
@@ -32,10 +31,10 @@ function App() {
 
   const [deletedCard, setDeletedCard] = React.useState(null);
   const [selectedCard, setSelectedCard] = React.useState(null);
-  const [infoMessage, setInfoMessage] = React.useState(null);
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [email, setEmail] = React.useState("");
+  const [infoMessage, setInfoMessage] = React.useState()
 
   const navigate = useNavigate();
 
@@ -87,7 +86,7 @@ function App() {
       .catch(console.error);
   }
 
-  function handleConfirmCardDelete(card) {
+  function handleConfirmCardDelete() {
     const cardId = deletedCard._id;
 
     api

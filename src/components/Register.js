@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../utils/auth";
+import Header from "./Header";
 
 function Register({ handleInfoMessage }) {
   const defaultInputs = {
@@ -45,6 +46,14 @@ function Register({ handleInfoMessage }) {
   }
 
   return (
+    <>
+      <Header>
+        <div className="header__nav">
+          <Link style={{color: '#A9A9A9'}} className="header__nav_button" to="/sign-in">
+            Войти
+          </Link>
+        </div>
+      </Header>
       <main>
         <div className="register">
           <h2 className="register__title">Регистрация</h2>
@@ -89,6 +98,7 @@ function Register({ handleInfoMessage }) {
           </form>
         </div>
       </main>
+    </>
   );
 }
 
