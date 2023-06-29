@@ -1,6 +1,7 @@
 import React from "react";
-import {useNavigate } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 import auth from "../utils/auth";
+import Header from './Header'
 
 function Login({ handleInfoMessage, onLogin }) {
   const defaultInputs = {
@@ -44,6 +45,11 @@ function Login({ handleInfoMessage, onLogin }) {
 
   return (
     <>
+    <Header>
+      <div className="header__nav">
+      <Link className='header__nav_button' to='/sign-up'>Регистрация</Link>
+      </div>
+    </Header>
       <main>
         <div className="register">
           <h2 className="register__title">Вход</h2>
