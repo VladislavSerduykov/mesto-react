@@ -205,7 +205,7 @@ function App() {
           <Route
             path="*"
             element={
-              isLoggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />
+              isLoggedIn ? <Navigate to="/"/> : <Navigate to="/sign-up"/>
             }
           />
         </Routes>
